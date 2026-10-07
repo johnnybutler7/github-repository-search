@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "repositories#index"
+
+  namespace :api do
+    resources :repositories, only: :index
+  end
 end
