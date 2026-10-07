@@ -8,3 +8,77 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #1f2328;
+  background: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+.repository-search {
+  max-width: 40rem;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.repository-search h1 {
+  margin: 0 0 2rem;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.repository-search-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.username-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.username-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.repository-search-form input {
+  min-height: 2.75rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #8c959f;
+  border-radius: 0.375rem;
+  font: inherit;
+}
+
+.username-field input {
+  width: 100%;
+}
+
+.repository-search-form input[type="submit"] {
+  color: #fff;
+  background: #24292f;
+  border-color: #24292f;
+  cursor: pointer;
+}
+
+.repository-search-form input:focus-visible {
+  outline: 2px solid #0969da;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .repository-search {
+    margin: 2rem auto;
+  }
+
+  .repository-search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
