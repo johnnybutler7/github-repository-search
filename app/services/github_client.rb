@@ -14,14 +14,20 @@ class GithubClient
     response = get(repository_uri(username))
 
     raise UserNotFound, "GitHub user not found." if response.is_a?(Net::HTTPNotFound)
-    raise Error, "Unable to load repositories from GitHub. Please try again." unless response.is_a?(Net::HTTPSuccess)
+    request_failed unless response.is_a?(Net::HTTPSuccess)
 
     JSON.parse(response.body).map do |repository|
       repository.slice("name", "html_url", "description", "language", "stargazers_count", "updated_at")
     end
+  rescue Net::OpenTimeout, Net::ReadTimeout
+    request_failed
   end
 
   private
+
+  def request_failed
+    raise Error, "Unable to load repositories from GitHub. Please try again."
+  end
 
   def repository_uri(username)
     encoded_username = URI.encode_www_form_component(username)

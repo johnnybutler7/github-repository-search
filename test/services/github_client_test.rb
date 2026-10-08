@@ -33,6 +33,16 @@ class GithubClientTest < ActiveSupport::TestCase
     assert_equal "GitHub user not found.", error.message
   end
 
+  test "raises the generic Error when a GitHub request times out" do
+    stub_request(:get, "https://api.github.com/users/example/repos?per_page=100")
+      .to_raise(Net::ReadTimeout)
+
+    error = assert_raises(GithubClient::Error) { GithubClient.new.repositories("example") }
+
+    assert_instance_of GithubClient::Error, error
+    assert_equal "Unable to load repositories from GitHub. Please try again.", error.message
+  end
+
   test "raises the generic Error for other unsuccessful responses" do
     stub_request(:get, "https://api.github.com/users/example/repos?per_page=100")
       .to_return(status: 500)
