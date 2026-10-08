@@ -25,10 +25,6 @@ class GithubClient
 
   private
 
-  def request_failed
-    raise Error, "Unable to load repositories from GitHub. Please try again."
-  end
-
   def repository_uri(username)
     encoded_username = URI.encode_www_form_component(username)
     URI("https://api.github.com/users/#{encoded_username}/repos?per_page=100")
@@ -42,5 +38,9 @@ class GithubClient
 
   def request_for(uri)
     Net::HTTP::Get.new(uri, HEADERS)
+  end
+
+  def request_failed
+    raise Error, "Unable to load repositories from GitHub. Please try again."
   end
 end
