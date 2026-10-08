@@ -45,7 +45,7 @@ export default class extends Controller {
       for (const [label, value] of [
         ["Language", repository.language || "Not specified"],
         ["Stars", repository.stargazers_count],
-        ["Updated", new Date(repository.updated_at).toLocaleDateString()]
+        ["Updated", repository.updated_at.slice(0, 10)]
       ]) {
         const entry = document.createElement("div")
         const term = document.createElement("dt")
