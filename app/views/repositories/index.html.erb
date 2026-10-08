@@ -1,11 +1,13 @@
-<main class="repository-search">
+<main class="repository-search" data-controller="search">
   <h1>Find GitHub repositories</h1>
 
-  <%= form_with url: root_path, method: :get, class: "repository-search-form" do |form| %>
+  <%= form_with url: root_path, method: :get, class: "repository-search-form", data: { action: "submit->search#submit" } do |form| %>
     <div class="username-field">
       <%= form.label :username, "Enter a GitHub username" %>
-      <%= form.text_field :username, required: true, placeholder: "e.g. octocat" %>
+      <%= form.text_field :username, required: true, placeholder: "e.g. octocat", data: { search_target: "username" } %>
     </div>
     <%= form.submit "Search" %>
   <% end %>
+
+  <div class="repository-results" data-search-target="results" aria-live="polite"></div>
 </main>
