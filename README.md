@@ -6,13 +6,10 @@ Enter a username to see repository names linked to GitHub, descriptions, languag
 
 ## Preview
 
-### Desktop
-
-![Repository search results on desktop](docs/screenshots/desktop.png)
-
-### Mobile
-
-![Repository search results on mobile](docs/screenshots/mobile.png)
+<p align="center">
+  <img src="docs/screenshots/desktop.png" alt="Repository search results on desktop" width="62%" />
+  <img src="docs/screenshots/mobile.png" alt="Repository search results on mobile" width="30%" />
+</p>
 
 ## Run locally
 
